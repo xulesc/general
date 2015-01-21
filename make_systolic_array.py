@@ -73,7 +73,7 @@ def make_sa(component):
   olines.append("end sys_array;")
   olines.append("--")
   ##
-  olines.append("architcture rtl of sys_array is")
+  olines.append("architecture rtl of sys_array is")
   #for s in all_signals:
   #  olines.append("\tsignal %s : integer;" %(', '.join(s)));
   for s in component:
