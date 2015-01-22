@@ -1,3 +1,9 @@
+/*
+Example from wikipedia
+
+http://en.wikipedia.org/wiki/D_%28programming_language%29#Example_2
+*/
+
 import std.stdio, std.algorithm, std.range, std.string;
  
 void main()
