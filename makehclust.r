@@ -13,13 +13,24 @@ hclust_method <- args[3]
 eps_file_name <- args[4]
 plot_legend <- args[5]
 
-## load data
-data.raw <- read.csv(data_file_name, header=FALSE)
-data.mat <- acast(data.raw, V1~V2, value.var="V3")
-data.d <- dist(data.mat, method = distance_type)
+doHClust <- function(f) {
+	data.raw <- read.csv(f,header=FALSE)
+	data.d <- as.dist(acast(data.raw, V1~V2, value.var="V3"))
+	data.fit <- hclust(data.d, method=hclust_method)
+	return(data.fit)
+}
 
-## cluster
-data.fit <- hclust(data.d, method = hclust_method)
+writeClusterMembership <- function(fitHclust, fname, kcount) {
+	clusterId <- cutree(fitHclust, k=kcount)
+	write.table(data.frame(clusterId), file=fname, col.names=F, 
+		row.names=T, sep=",")	
+}
+
+## cluster (assume data file contains pairwise distances)
+data.fit <- doHClust(data_file_name)
+
+## write clusters
+writeClusterMembership(data.fit, 'data.clust.csv',5)
 
 ## plot to file
 postscript(eps_file_name)
