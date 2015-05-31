@@ -93,6 +93,6 @@ if __name__ == "__main__":
 			pdb_fn = pdbList.retrieve_pdb_file(pdb_dom_name)
 			splitter.make_pdb(pdb_fn, pdb_chain)
 		except:
-			print 'ERROR: %s now downloaded' %pdb_dom_name
+			print 'ERROR: %s not extracted' %pdb_dom_name
 
 
